@@ -605,7 +605,7 @@ span {
   position: relative;
   background-image: 
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url(/img/fondocontact.jpg);
+    url(img/fondocontact.jpg);
   background-size: cover;
   background-position: center;
   background-attachment: fixed; /* efecto parallax */
