@@ -73,3 +73,19 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(
   '.section-dos .card.left, .section-dos .card.right, .section-dos .section-title, .section-dos .section-text,  .services .title-services, .services .text-services, .services .service-card'
 ).forEach(el => observer.observe(el));
+
+// ============================
+// 🔽 Formulario de contacto
+// ============================
+
+const contactForm = document.getElementById('contactForm');
+const formResponse = document.getElementById('formResponse');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        formResponse.textContent = "✅ ¡Gracias por contactarte! Te responderemos pronto.";
+        contactForm.reset();
+    });
+}
+

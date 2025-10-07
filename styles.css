@@ -99,6 +99,8 @@ body {
 .letras {
   color: #ffffffcb;
   margin-top: 10px;
+  animation: fadeUpMove 0.8s ease forwards;
+  animation-delay: 0.05s;
 }
 
 span {
@@ -173,15 +175,90 @@ span {
 .nav-links li a:not(:hover)::after { transform-origin: right; }
 
 @media (max-width: 720px) {
-  .nav-links { flex-direction: column; display: none; }
-  .nav-links.show { display: flex; }
-  .menu-toggle { display: block; }
+  .menu-toggle {
+    display: block;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    z-index: 2000;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 64px; /* justo debajo del header */
+    left: 0;
+    width: 100%;
+    background: rgba(0, 32, 24, 0.95);
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 0;
+    display: none;
+    animation: fadeMenu 0.3s ease forwards;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li a {
+    font-size: 1.2rem;
+    text-shadow: none;
+  }
+
+  /* Animación suave al aparecer */
+  @keyframes fadeMenu {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .logo { transition: none; }
   .logo:hover { transform: none; }
 }
+
+/* ==========================
+    🔹 RESPONSIVE HOME SECTION
+========================== */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;         /* apila texto y tarjeta */
+    align-items: center;            /* centra todo */
+    padding-top: 80px;
+    gap: 30px;
+  }
+
+  .textos {
+    text-align: center;             /* centra textos */
+    max-width: 90%;                 /* más adaptable */
+  }
+
+  .titulo {
+    font-size: 2.5rem;              /* más chico para móvil */
+  }
+
+  .subtitulo {
+    font-size: 1.2rem;
+  }
+
+  .letras {
+    font-size: 0.95rem;
+  }
+
+  .card.card-grande {
+    width: 90%;                     /* ocupa casi todo el ancho */
+    padding: 20px;
+  }
+
+  .card.card-grande img {
+    height: auto;                   /* deja que la altura se ajuste */
+    max-height: 250px;
+  }
+}
+
 
 /* ---------- TARJETAS ---------- */
 
@@ -520,6 +597,98 @@ span {
 }
 
 
+/* ==========================
+   CONTACT SECTION
+========================== */
+
+.contact {
+  position: relative;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(/img/fondocontact.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* efecto parallax */
+  color: #fff;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.contact-cont {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: rgb(0,243,182);
+  opacity: 0;
+  animation: fadeUpMove 0.8s ease forwards;
+}
+
+.contact-text {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUpMove 0.8s ease forwards;
+  animation-delay: 0.2s;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: rgb(4, 138, 104);
+  background-color: #dadada;
+  width: 15%;
+  text-align: center;
+  border: 1px solid #04b15b;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.btn-contact {
+  background-color: rgb(3,83,63);
+  color: rgb(255, 255, 255);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-contact:hover {
+  background-color: rgb(2, 131, 99);
+}
+
+.form-response {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: rgb(0,243,182);
+}
+
+
 
 /* FOOTER */
 
@@ -531,4 +700,6 @@ span {
   align-items: center;
   font-size: 1.5rem;
   font-weight: bold;
+  color: #dadada;
+  background: rgb(0, 32, 24);
 }
