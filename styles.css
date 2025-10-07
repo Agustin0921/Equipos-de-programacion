@@ -1,0 +1,534 @@
+@import url('https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Alan Sans", sans-serif;
+}
+
+body {
+  background-color: #33743baf;
+}
+
+/* HEADER */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  background: transparent;
+  color: #ffffff;
+  box-shadow: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease, height 0.25s ease;
+  z-index: 1000;
+}
+
+.header.scrolled {
+  background: rgb(2, 59, 45);
+  box-shadow: 0px 2px 12px #000f;
+}
+
+/* HERO / SECCION PRINCIPAL */
+.section {
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  height: 100vh;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)),
+    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* CONTENEDOR PRINCIPAL: textos (izq) y tarjetas (der).
+   align-items: flex-start para que título/subtitulo estén arriba (no centrados verticalmente). */
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 100px; /* separa del header fijo */
+}
+
+/* BLOQUE DE TEXTOS (izquierda). max-width evita que el título “invada” las tarjetas */
+.textos {
+  max-width: 480px;
+  flex: 1;
+  text-align: left;
+}
+
+/* Animación de entrada (se reutiliza) */
+@keyframes fadeUpMove {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: none; /* en vez de translateY(0) */
+  }
+}
+
+/* TÍTULO y SUBTÍTULO: arrancan invisibles y aparecen con fadeUpMove */
+.titulo {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  color: rgb(255,255,255);
+  text-shadow: 0px 2px 12px #0008;
+  opacity: 0;
+  animation: fadeUpMove 0.8s ease forwards;
+  animation-delay: 0.05s;
+}
+
+.subtitulo {
+  margin-bottom: 30px;
+  font-size: 1.5rem;
+  color: rgb(196,196,196);
+  
+  opacity: 0;
+  animation: fadeUpMove 0.8s ease forwards;
+  animation-delay: 0.25s;
+}
+
+.letras {
+  color: #ffffffcb;
+  margin-top: 10px;
+}
+
+span {
+  color: rgb(0,243,182);
+}
+
+/* NAV y logo (sin cambios funcionales importantes) */
+.menu-toggle { display: none; }
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 12px;
+}
+
+.logo {
+  display: inline-block;
+  width: 70px;
+  transform-origin: center;
+  transition: transform 600ms cubic-bezier(.2,.8,.2,1);
+  will-change: transform;
+}
+.logo:hover {
+  transform: scale(1.08) rotate(360deg);
+}
+
+/* Nav links animados (sin tocar) */
+.nav-links {
+  display: flex;
+  gap: 12px;
+  list-style: none;
+}
+.nav-links li a {
+  position: relative;
+  display: inline-block;
+  padding: 8px 14px;
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: 0px 2px 10px #0008;
+  font-weight: bold;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+.nav-links li a::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #a7a6a6;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: -1;
+  border-radius: 6px;
+}
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: rgb(0,243,182);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.nav-links li a:hover { color: rgb(63,236,193); }
+.nav-links li a:hover::before,
+.nav-links li a:hover::after { transform: scaleX(1); }
+.nav-links li a:not(:hover)::before,
+.nav-links li a:not(:hover)::after { transform-origin: right; }
+
+@media (max-width: 720px) {
+  .nav-links { flex-direction: column; display: none; }
+  .nav-links.show { display: flex; }
+  .menu-toggle { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo { transition: none; }
+  .logo:hover { transform: none; }
+}
+
+/* ---------- TARJETAS ---------- */
+
+/* Estilos contenedor de tarjetas */
+.cards {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+/* Base de cada tarjeta: arrancan invisibles (opacity:0), pero NO tienen transform inicial que interfiera */
+.card {
+  background: #ffffff;
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  width: 300px;        /* ancho base */
+  padding: 20px;
+  text-align: center;
+  opacity: 1;          /* visible después de la animación */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover: levanta la tarjeta (usa transform que se aplica sobre el estado actual) */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0,243,182,0.425);
+}
+
+/* Clase que activa la animación de entrada (aplicar 'fade-up' en HTML) */
+.fade-up {
+  opacity: 0;
+  animation: fadeUpMove 0.8s ease forwards;
+}
+
+/* Delays específicos para tarjetas dentro de .section-dos (para cascada) */
+.section-dos .cards .card:nth-child(1) { animation-delay: 0.5s; }
+.section-dos .cards .card:nth-child(2) { animation-delay: 0.75s; }
+
+/* Si querés que cada tarjeta dentro de cualquier .cards tenga delays (opcional)
+   .cards .card:nth-child(1) { animation-delay: 0.5s; }
+   .cards .card:nth-child(2) { animation-delay: 0.8s; }
+*/
+
+/* estilos imagen y textos de tarjeta */
+.card img {
+  height: 150px;
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 15px;
+}
+.card h2 {
+  margin: 10px 0;
+  font-size: 1.5rem;
+  color: rgb(3,83,63);
+}
+.card p { font-size: 1rem; line-height: 1.4; margin-bottom: 15px; }
+
+/* botón dentro de la tarjeta (sin cambios funcionales) */
+.card .btn {
+  position: relative;
+  display: inline-block;
+  padding: 8px 14px;
+  background: transparent;
+  color: rgb(3,83,63);
+  border: 2px solid rgb(3,83,63);
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  overflow: hidden;
+  transition: color 0.3s ease;
+  z-index: 1;
+}
+.card .btn::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgb(3,83,63);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+.card .btn:hover { color: #fff; }
+.card .btn:hover::before { transform: scaleX(1); transform-origin: left; }
+.card .btn:not(:hover)::before { transform-origin: right; }
+
+/* Tarjeta grande: colocala DESPUÉS de la regla .card para que sobrescriba */
+.card.card-grande {
+  width: 600px;      /* tamaño mayor */
+  padding: 40px;
+  font-size: 1.05rem;
+}
+.card.card-grande img { height: 320px; }
+
+/* SECTION 2 (ubicación de las tarjetas pequeñas) */
+.section-dos {
+    background-color: rgb(0, 32, 24);
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  min-height: 70vh;
+  padding: 60px 20px;
+}
+
+
+/* Keyframes (ya definido arriba, pero dejamos aquí por claridad) */
+/* @keyframes fadeUpMove { ... }  ya declarado */
+
+
+/* Preparar tarjetas de section-dos (inicialmente ocultas) */
+.section-dos .card {
+  opacity: 0;
+  transform: translateY(40px); /* opcional: que arranquen un poquito abajo */
+}
+
+/* Clases que se activarán con JS */
+.section-dos .card.animate-left {
+  animation: slideInLeft 0.8s ease forwards;
+}
+.section-dos .card.animate-right {
+  animation: slideInRight 0.8s ease forwards;
+}
+
+/* Título de la section-dos animado igual que fadeUpMove */
+.section-dos .section-title {
+  opacity: 0;
+}
+.section-dos .section-title.animate-up {
+  animation: fadeUpMove 0.8s ease forwards;
+}
+
+.section-dos .section-text {
+  opacity: 0;
+}
+
+.section-dos .section-text.animate-up {
+  animation: fadeUpMove 0.8s ease forwards;
+  animation-delay: 0.2s; /* un poquito más tarde que el título */
+}
+
+.section-title {
+  color: #fff;
+}
+
+.section-text {
+  color: #999;
+}
+
+/* Card entra desde la izquierda */
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Card entra desde la derecha */
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.services {
+  padding: 80px 20px;
+  background-color: #dadada;
+  height: 100%;
+  text-align: center;
+}
+
+.content-services {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+.title-services {
+  font-size: 2.5rem;          /* título más grande */
+  color: rgb(3, 83, 63);      /* mismo color de tu paleta */
+  margin-bottom: 20px;        /* espacio debajo */
+               /* arranca invisible */
+  animation: fadeUpMove 0.8s ease forwards; /* animación al cargar */
+}
+
+.text-services {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 40px;
+
+  animation: fadeUpMove 0.8s ease forwards;
+  animation-delay: 0.2s;      /* aparece un poquito después del título */
+}
+
+.title-services, 
+.text-services {
+  opacity: 0;
+  transform: translateY(40px); /* arranca un poco abajo */
+}
+
+
+/* Clases que se activan con JS */
+.title-services.animate-up,
+.text-services.animate-up {
+  animation: fadeUpMove 0.8s ease forwards;
+}
+
+.service-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.service-card {
+  width: 80%;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: rgb(3, 83, 63);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px #0009;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateX(0);
+  position: relative; /* 🔹 necesario para el destello */
+  overflow: hidden;   /* 🔹 oculta lo que se salga del borde redondeado */
+}
+
+.service-card img {
+  width: 100%;             /* ocupa todo el ancho de la tarjeta */
+  max-height: 450px;       /* altura máxima */
+  object-fit: cover;       /* recorta sin deformar */
+  border-radius: 8px;      /* esquinas redondeadas */
+  margin-top: 15px;        /* separa del texto */
+}
+
+.service-card.animate-left {
+  animation: slideInLeftService 0.8s ease forwards;
+}
+.service-card.animate-right {
+  animation: slideInRightService 0.8s ease forwards;
+}
+
+.service-card:hover {
+  transform: scale(1.05); /* en vez de levantarla, hace zoom */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+/* 🔹 Destello lateral */
+.service-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%; /* arranca fuera de la tarjeta */
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: skewX(-20deg);
+}
+
+.service-card:hover::after {
+  animation: shine 0.8s forwards;
+}
+
+
+.service-card h3 {
+  margin-bottom: 10px;
+  color: rgb(255, 255, 255);
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  color: #cecece;
+}
+
+@keyframes zoomInFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.8); /* más chica */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1); /* tamaño normal */
+  }
+}
+
+
+@keyframes shine {
+  100% {
+    left: 125%; /* se mueve hasta salir por la derecha */
+  }
+}
+
+/* Animación de entrada desde la izquierda */
+@keyframes slideInLeftService {
+  0% {
+    opacity: 0;
+    transform: translateX(-120px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animación de entrada desde la derecha */
+@keyframes slideInRightService {
+  0% {
+    opacity: 0;
+    transform: translateX(120px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+
+/* FOOTER */
+
+
+.footer {
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
