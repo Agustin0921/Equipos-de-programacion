@@ -39,9 +39,33 @@
                 <p>Aplicación web completa con panel de administración y hosting incluido.</p>
             </div>
         </div>
-    
+        
+        <!-- 🧮 Simulador Interactivo de Cotización -->
+        <section class="simulador">
+            <h2>💰 Cotizá tu proyecto</h2>
+            <p>Seleccioná un plan y servicios adicionales para ver el presupuesto estimado:</p>
+            
+            <label for="plan">Elegí tu plan:</label>
+            <select id="plan">
+                <option value="0">-- Seleccioná --</option>
+                <option value="200">Básico - $200</option>
+                <option value="400">Profesional - $400</option>
+                <option value="700">Premium - $700</option>
+            </select>
+        
+            <div class="extras">
+                <label><input type="checkbox" value="100"> Hosting incluido (+$100)</label><br>
+                <label><input type="checkbox" value="150"> Soporte 24h (+$150)</label><br>
+                <label><input type="checkbox" value="80"> Dominio personalizado (+$80)</label>
+            </div>
+        
+            <h3>Total estimado: <span id="total">$0</span></h3>
+        </section>
+
         <a href="index.html" class="btn-volver">Volver al Inicio</a>
     </main>
 
+    <!-- script -->
+    
 </body>
 </html>
