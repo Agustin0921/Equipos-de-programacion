@@ -9,22 +9,24 @@
 <body>
     <header class="header">
         <nav class="nav">
-            <img src="/img/logocoati.png" class="logo">
-            <!-- Botón hamburguesa -->
-            <button class="menu-toggle" id="menuBtn" aria-expanded="false" aria-controls="menu">☰</button>
+            <img src="img/logocoati.png" class="logo">
+            <!-- Botón hamburguesa- -->
+            <button class="menu-toggle" id="menuBtn" aria-expanded="false" aria-controls="menu">
+                <span class="menu-icon">☰</span>
+            </button>
             <ul class="nav-links" id="menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">Equipos</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#contact">Contacto</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <!-- SECTION HOME -->
+        <!-- SECTION HOME- -->
         <section class="section">
             <div class="content">
-                <!-- Columna izquierda: título y subtítulo -->
+                <!-- Columna izquierda: título y subtítulo - -->
                 <div class="textos" id="home">
                     <h1 class="titulo">BIENVENIDOS</h1>
                     <p class="subtitulo">EQUIPOS DE <span>PROGRAMACIÓN</span> </p>
@@ -34,7 +36,7 @@
                 </div>
                 <!-- Columna derecha: tarjetas -->
                 <div class="card card-grande fade-up">
-                    <img src="/img/equipo1.jpg" alt="Imagen tarjeta principal">
+                    <img src="img/equipo1.jpg" alt="Imagen tarjeta principal">
                     <h2>PROYECTO DESTACADO</h2>
                     <p>Una tarjeta más grande para destacar un proyecto o mensaje principal.</p>
                     <a href="#" class="btn">Leer más</a>
@@ -42,22 +44,22 @@
             </div>
         </section>
 
-        <!-- SECTION ABOUT -->
-        <section class="section-dos">
+        <!-- SECTION ABOUT- -->
+        <section class="section-dos" id="about">
             <div class="content-dos">
                 <h2 class="section-title">About Us</h2>
                 <p class="section-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
                 <div class="cards">
                     <div class="card left">
-                        <img src="/img/equipo1.jpg" alt="Imagen tarjeta 1">
+                        <img src="img/equipo1.jpg" alt="Imagen tarjeta 1">
                         <h2>EQUIPO 1</h2>
                         <p>Este es un texto de ejemplo para la primera tarjeta de presentación.</p>
                         <a href="equipo1.html" class="btn">Leer más</a>
                     </div>
                 
                     <div class="card right">
-                        <img src="/img/equipo2.jpg" alt="Imagen tarjeta 2">
+                        <img src="img/equipo2.jpg" alt="Imagen tarjeta 2">
                         <h2>EQUIPO 2</h2>
                         <p>Otro texto de ejemplo para la segunda tarjeta de presentación.</p>
                         <a href="equipo2.html" class="btn">Leer más</a>
@@ -67,7 +69,7 @@
         </section>
 
         <!-- SECTION SERVICES -->
-        <section class="services">
+        <section class="services" id="services">
             <div class="content-services">
                 <h2 class="title-services">SERVICES</h2>
                 <p class="text-services">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio, magnam!</p>
@@ -76,48 +78,69 @@
                     <div class="service-card fade-up">
                         <h3 class="item-title">Diseño Web</h3>
                         <p>Creaciones de páginas modernas, rápidas y responsivas</p>
-                        <img src="/img/desarrolloweb.jpg" alt="Imagen de diseño web">
+                        <img src="img/desarrolloweb.jpg" alt="Imagen de diseño web">
                     </div>
                     <div class="service-card fade-up">
                         <h3 class="item-title">Desarrolo de Backend</h3>
                         <p>Soluciones escalables con Node.js y bases de datos.</p>
-                        <img src="/img/backend.png" alt="Imagen de diseño web">
+                        <img src="img/backend.png" alt="Imagen de diseño web">
                     </div>
                     <div class="service-card fade-up">
                         <h3 class="item-title">Soporte Técnico</h3>
                         <p>Atención personalizada para resolver problemas en el desarrollo web.</p>
-                        <img src="/img/soportetecnico.jpg" alt="Imagen de diseño web">
+                        <img src="img/soportetecnico.jpg" alt="Imagen de diseño web">
                     </div>
                     <div class="service-card fade-up">
                         <h3 class="item-title">Diseño Web</h3>
                         <p>Creaciones de páginas modernas, rápidas y responsivas</p>
-                        <img src="/img/desarrolloweb.jpg" alt="Imagen de diseño web">
+                        <img src="img/desarrolloweb.jpg" alt="Imagen de diseño web">
                     </div>
                     <div class="service-card fade-up">
                         <h3 class="item-title">Desarrolo de Backend</h3>
                         <p>Soluciones escalables con Node.js y bases de datos.</p>
-                        <img src="/img/backend.png" alt="Imagen de diseño web">
+                        <img src="img/backend.png" alt="Imagen de diseño web">
                     </div>
                     <div class="service-card fade-up">
                         <h3 class="item-title">Soporte Técnico</h3>
                         <p>Atención personalizada para resolver problemas en el desarrollo web.</p>
-                        <img src="/img/soportetecnico.jpg" alt="Imagen de diseño web">
+                        <img src="img/soportetecnico.jpg" alt="Imagen de diseño web">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
-        <section class="contact">
+        <!-- CONTACT SECTION- -->
+        <section class="contact" id="contact">
             <div class="contact-cont">
-
+                <h2 class="contact-title">CONTACTOS</h2>
+                <p class="contact-text">¿Tenés un proyecto o consulta? Escribinos y te responderemos pronto.</p>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="email">Correo</label>
+                        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Escribí tu mensaje..." required></textarea>
+                    </div>
+                
+                    <button type="submit" class="btn-contact">Enviar</button>
+                </form>
+                <p id="formResponse" class="form-response"></p>
             </div>
         </section>
     </main>
 
     <!-- FOOTER -->
     <footer class="footer">
-        @Copyright Agustin Toledo - 2036
+        @Copyright Agustin,Timoteo,Benjamin,Ruben,Santiago - 2036
     </footer>
     <script src="script.js"></script>
 </body>
