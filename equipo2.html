@@ -45,56 +45,56 @@
 
     <!-- ✅ Gestor Interactivo de Tareas -->
     <section class="tareas">
-  <h2>🧾 Gestor de Proyectos</h2>
-  <p>Agregá tus tareas o funcionalidades pendientes del sistema:</p>
+        <h2>🧾 Gestor de Proyectos</h2>
+        <p>Agregá tus tareas o funcionalidades pendientes del sistema:</p>
 
-  <div class="tareas-input">
-    <input type="text" id="nuevaTarea" placeholder="Escribí una tarea..." />
-    <button id="agregarTarea">Agregar</button>
-  </div>
-
-  <ul id="listaTareas"></ul>
-</section>
+        <div class="tareas-input">
+            <input type="text" id="nuevaTarea" placeholder="Escribí una tarea..." />
+            <button id="agregarTarea">Agregar</button>
+        </div>
+    
+        <ul id="listaTareas"></ul>
+    </section>
 
 
     <!-- Script -->
-<script>
-const input = document.getElementById("nuevaTarea");
-const btnAgregar = document.getElementById("agregarTarea");
-const lista = document.getElementById("listaTareas");
+    <script>
+        const input = document.getElementById("nuevaTarea");
+        const btnAgregar = document.getElementById("agregarTarea");
+        const lista = document.getElementById("listaTareas");
+        
+        function agregarTarea() {
+            const texto = input.value.trim();
+            if (texto === "") return;
+            
+            const li = document.createElement("li");
+            const span = document.createElement("span");
+            span.textContent = texto;
+            
+            const btnEliminar = document.createElement("button");
+            btnEliminar.textContent = "🗑️";
+            
+            // Marcar como completada al hacer clic
+            span.addEventListener("click", () => {
+                li.classList.toggle("completada");
+            });
+        
+            // Eliminar tarea
+            btnEliminar.addEventListener("click", () => {
+                li.remove();
+            });
+        
+            li.appendChild(span);
+            li.appendChild(btnEliminar);
+            lista.appendChild(li);
+        
+            input.value = "";
+        }   
 
-function agregarTarea() {
-  const texto = input.value.trim();
-  if (texto === "") return;
-
-  const li = document.createElement("li");
-  const span = document.createElement("span");
-  span.textContent = texto;
-
-  const btnEliminar = document.createElement("button");
-  btnEliminar.textContent = "🗑️";
-
-  // Marcar como completada al hacer clic
-  span.addEventListener("click", () => {
-    li.classList.toggle("completada");
-  });
-
-  // Eliminar tarea
-  btnEliminar.addEventListener("click", () => {
-    li.remove();
-  });
-
-  li.appendChild(span);
-  li.appendChild(btnEliminar);
-  lista.appendChild(li);
-
-  input.value = "";
-}
-
-btnAgregar.addEventListener("click", agregarTarea);
-input.addEventListener("keypress", e => {
-  if (e.key === "Enter") agregarTarea();
-});
-</script>
+        btnAgregar.addEventListener("click", agregarTarea);
+        input.addEventListener("keypress", e => {
+            if (e.key === "Enter") agregarTarea();
+        });
+    </script>
 </body>
 </html>
