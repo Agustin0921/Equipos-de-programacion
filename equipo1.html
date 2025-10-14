@@ -66,6 +66,22 @@
     </main>
 
     <!-- script -->
+     <script>
+const plan = document.getElementById("plan");
+const extras = document.querySelectorAll(".extras input");
+const total = document.getElementById("total");
+
+function calcularTotal() {
+  let suma = parseInt(plan.value) || 0;
+  extras.forEach(chk => {
+    if (chk.checked) suma += parseInt(chk.value);
+  });
+  total.textContent = "$" + suma;
+}
+
+plan.addEventListener("change", calcularTotal);
+extras.forEach(chk => chk.addEventListener("change", calcularTotal));
+</script>
     
 </body>
 </html>
