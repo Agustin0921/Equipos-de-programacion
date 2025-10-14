@@ -186,3 +186,52 @@
     width: 90%;
   }
 }
+
+
+/* ==========================
+   🎨 SIMULADOR INTERACTIVO
+========================== */
+.simulador {
+  margin-top: 60px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 500px;
+  margin-inline: auto;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  backdrop-filter: blur(5px);
+}
+
+.simulador h2 {
+  color: rgb(0,243,182);
+  margin-bottom: 10px;
+}
+
+.simulador p {
+  color: #e0e0e0;
+}
+
+.simulador select,
+.simulador input[type="checkbox"] {
+  margin: 10px 0;
+}
+
+.simulador select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+.simulador label {
+  display: block;
+  margin-top: 6px;
+}
+
+#total {
+  color: rgb(0,243,182);
+  font-weight: bold;
+  font-size: 1.3rem;
+}
