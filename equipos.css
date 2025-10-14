@@ -235,3 +235,97 @@
   font-weight: bold;
   font-size: 1.3rem;
 }
+
+/* ==========================
+   📋 GESTOR DE TAREAS EQUIPO 2
+========================== */
+.tareas {
+  margin-top: 60px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 500px;
+  margin-inline: auto;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  backdrop-filter: blur(5px);
+}
+
+.tareas h2 {
+  color: rgb(0,213,255);
+  margin-bottom: 10px;
+}
+
+.tareas-input {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.tareas-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.tareas-input button {
+  background: rgb(0,213,255);
+  color: #012641;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.tareas-input button:hover {
+  background: rgb(0,243,182);
+}
+
+#listaTareas {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#listaTareas li {
+  background: rgba(255,255,255,0.15);
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+#listaTareas li:hover {
+  transform: translateX(4px);
+}
+
+#listaTareas li span {
+  flex: 1;
+  text-align: left;
+}
+
+#listaTareas li.completada span {
+  text-decoration: line-through;
+  color: rgb(0,243,182);
+}
+
+#listaTareas button {
+  background: transparent;
+  border: none;
+  color: rgb(0,243,182);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+#listaTareas button:hover {
+  color: red;
+}
