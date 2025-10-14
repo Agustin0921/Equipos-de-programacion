@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap');
+
+/* ===============================
+   ESTILO DE PÁGINAS DE EQUIPOS
+================================*/
+
+* {
+    font-family: "Alan Sans", sans-serif;
+}
+
+
+    
+
+
+/* ===== HEADER (reutilizado) ===== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  background: rgb(2, 59, 45);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0px 2px 10px #0008;
+  z-index: 1000;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+}
+
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: rgb(0, 243, 182);
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+.logo {
+  width: 60px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: rotate(360deg) scale(1.1);
+}
+
+
+.page-equipo {
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 120px 20px 60px;
+  text-align: center;
+  color: #222;
+}
+
+.page-equipo h1 {
+  font-size: 3rem;
+  color: rgb(3,83,63);
+  margin-bottom: 20px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.page-equipo p {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+/* ---- SECCIÓN DE PLANES ---- */
+.planes {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.planes .card {
+  width: 280px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.planes .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 18px rgba(0,243,182,0.4);
+}
+
+.planes .card h3 {
+  color: rgb(3,83,63);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.planes .card p {
+  font-size: 1rem;
+  color: #353535;
+}
+
+/* ---- BOTÓN VOLVER ---- */
+.btn-volver {
+  display: inline-block;
+  margin-top: 50px;
+  background-color: rgb(3,83,63);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn-volver:hover {
+  background-color: rgb(2,131,99);
+}
+
+/* ---- DIFERENCIAS ENTRE EQUIPOS ---- */
+.equipo1 {
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), /* capa oscura */
+    url("img/4k-programming-background-1w77zc30c5w5xjbk.jpg"); /* tu imagen */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* efecto parallax */
+  color: white; /* el texto se vuelve claro */
+}
+
+.equipo2 {
+  background: linear-gradient(to bottom right, #427186, #012641);
+}
+
+.equipo1 h1 {
+  color: rgb(0, 185, 130);
+
+}
+
+.equipo2 h1 {
+  color: rgb(0, 213, 255);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .page-equipo h1 {
+    font-size: 2rem;
+  }
+  .page-equipo p {
+    font-size: 1rem;
+  }
+  .planes {
+    flex-direction: column;
+    align-items: center;
+  }
+  .planes .card {
+    width: 90%;
+  }
+}
