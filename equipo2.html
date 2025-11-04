@@ -1,100 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipo 2</title>
-    <link rel="stylesheet" href="equipos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipo 2 - Soluciones Digitales</title>
+  <link rel="stylesheet" href="equipos.css">
 </head>
-<body>
-    <header class="header scrolled">
-        <nav class="nav">
-            <a href="index.html"><img src="img/logocoati.png" class="logo" alt="Logo"></a>
-            <ul class="nav-links">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="equipo1.html">Equipo 1</a></li>
-                <li><a href="equipo2.html">Equipo 2</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="bodydos">
+  <header class="header header-edos scrolled">
+    <nav class="nav">
+      <a href="index.html"><img src="img/logocoati.png" class="logo" alt="Logo"></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="equipo1.html">Equipo 1</a></li>
+        <li><a href="equipo2.html">Equipo 2</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main class="page-equipo equipo2">
-        <h1>Equipo 2 - Soluciones Digitales</h1>
-        <p>El Equipo 2 se centra en la creación de sistemas de gestión con 
-        <b>Python (FastAPI), MySQL y Vue.js</b>. Su objetivo es ofrecer software robusto, rápido y seguro para pequeñas empresas.</p>
-        
-        <h2>Nuestros Planes</h2>
-        
-        <div class="planes">
-            <div class="card">
-                <h3>Plan Start</h3>
-                <p>Gestor básico con base de datos y autenticación simple.</p>
-            </div>
-            <div class="card">
-                <h3>Plan Business</h3>
-                <p>Panel administrativo completo con estadísticas y control de usuarios.</p>
-            </div>
-            <div class="card">
-                <h3>Plan Enterprise</h3>
-                <p>Sistema personalizado con API, dashboards y soporte prioritario.</p>
-            </div>
-        </div>
-    
-        <a href="index.html" class="btn-volver">Volver al Inicio</a>
-    </main>
-
-    <!-- ✅ Gestor Interactivo de Tareas -->
-    <section class="tareas">
-        <h2>🧾 Gestor de Proyectos</h2>
-        <p>Agregá tus tareas o funcionalidades pendientes del sistema:</p>
-
-        <div class="tareas-input">
-            <input type="text" id="nuevaTarea" placeholder="Escribí una tarea..." />
-            <button id="agregarTarea">Agregar</button>
-        </div>
-    
-        <ul id="listaTareas"></ul>
+  <main class="page-equipo equipo2">
+    <section class="section-header">
+      <h1>Equipo 2 - Soluciones Digitales</h1>
+      <p>El Equipo 2 se centra en la creación de sistemas de gestión con 
+      <b>Python (FastAPI), MySQL y Vue.js</b>. Su objetivo es ofrecer software robusto, rápido y seguro para pequeñas empresas.</p>
     </section>
 
+    <section class="section-cards">
+      <h2>Nuestros Planes</h2>
+      <div class="planes">
+        <div class="card card-azul" data-plan="start">
+          <h3>Plan Start</h3>
+          <p>Gestor básico con base de datos y autenticación simple.</p>
+          <div class="extra-info">
+            <ul>
+              <li>Login y registro de usuarios</li>
+              <li>CRUD de datos</li>
+              <li>Entrega rápida</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card card-azul" data-plan="business">
+          <h3>Plan Business</h3>
+          <p>Panel administrativo completo con estadísticas y control de usuarios.</p>
+          <div class="extra-info">
+            <ul>
+              <li>Gráficos en tiempo real</li>
+              <li>Roles y permisos</li>
+              <li>Soporte extendido</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card card-azul" data-plan="enterprise">
+          <h3>Plan Enterprise</h3>
+          <p>Sistema personalizado con API, dashboards y soporte prioritario.</p>
+          <div class="extra-info">
+            <ul>
+              <li>Integración con APIs</li>
+              <li>Dashboard dinámico</li>
+              <li>Mantenimiento anual</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Script -->
-    <script>
-        const input = document.getElementById("nuevaTarea");
-        const btnAgregar = document.getElementById("agregarTarea");
-        const lista = document.getElementById("listaTareas");
-        
-        function agregarTarea() {
-            const texto = input.value.trim();
-            if (texto === "") return;
-            
-            const li = document.createElement("li");
-            const span = document.createElement("span");
-            span.textContent = texto;
-            
-            const btnEliminar = document.createElement("button");
-            btnEliminar.textContent = "🗑️";
-            
-            // Marcar como completada al hacer clic
-            span.addEventListener("click", () => {
-                li.classList.toggle("completada");
-            });
-        
-            // Eliminar tarea
-            btnEliminar.addEventListener("click", () => {
-                li.remove();
-            });
-        
-            li.appendChild(span);
-            li.appendChild(btnEliminar);
-            lista.appendChild(li);
-        
-            input.value = "";
-        }   
+    <a href="index.html" class="btn-volver">Volver al Inicio</a>
+  </main>
 
-        btnAgregar.addEventListener("click", agregarTarea);
-        input.addEventListener("keypress", e => {
-            if (e.key === "Enter") agregarTarea();
-        });
-    </script>
+  <!-- ✅ Gestor Interactivo de Tareas -->
+  <section class="tareas">
+    <h2>🧾 Gestor de Proyectos</h2>
+    <p>Agregá tus tareas o funcionalidades pendientes del sistema:</p>
+
+    <div class="tareas-input">
+      <input type="text" id="nuevaTarea" placeholder="Escribí una tarea..." />
+      <button id="agregarTarea" class="btn-tarea">Agregar</button>
+    </div>
+    <ul id="listaTareas"></ul>
+  </section>
+
+  <script src="script2.js"></script>
 </body>
 </html>

@@ -5,6 +5,8 @@
 ================================*/
 
 * {
+  margin: 0;
+  padding: 0;
     font-family: "Alan Sans", sans-serif;
 }
 
@@ -249,6 +251,7 @@
   color: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
   backdrop-filter: blur(5px);
+  margin-bottom: 50px;
 }
 
 .tareas h2 {
@@ -329,3 +332,562 @@
 #listaTareas button:hover {
   color: red;
 }
+
+/* =====✨ Tarjetas expandibles con efecto acordeón fluido ===== */
+.card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeSlideIn 0.8s forwards;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  max-height: 200px; /* altura base */
+  transition: max-height 0.6s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* animación de entrada */
+@keyframes fadeSlideIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* hover con efecto neón */
+.card:hover {
+  border-color: rgb(0,243,182);
+  box-shadow: 0 0 25px rgba(0,243,182,0.5), 0 0 10px rgba(0,243,182,0.3) inset;
+  transform: translateY(-5px);
+  background: linear-gradient(
+    145deg,
+    rgba(0,243,182,0.15),
+    rgba(255,255,255,0.05)
+  );
+}
+
+/* card expandida con animación de altura */
+.card.expanded {
+  background: rgba(0,243,182,0.12);
+  border: 2px solid rgb(0,243,182);
+  box-shadow: 0 0 30px rgba(0,243,182,0.4);
+  max-height: 500px; /* aumenta altura suavemente */
+  transform: scale(1.03);
+}
+
+/* textos */
+.card h3 {
+  color: rgb(0,243,182);
+}
+
+.card p {
+  color: #e0e0e0;
+}
+
+/* contenido extra */
+.card .extra-info {
+  opacity: 0;
+  margin-top: 15px;
+  text-align: left;
+  transition: opacity 0.4s ease;
+}
+
+.card.expanded .extra-info {
+  opacity: 1;
+}
+
+/* botón dentro de la card */
+.btn-elegir {
+  background-color: rgb(0,243,182);
+  color: #012641;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn-elegir:hover {
+  background-color: rgb(3,83,63);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* card seleccionada */
+.card.selected {
+  border: 2px solid rgb(0,243,182);
+  box-shadow: 0 0 20px rgba(0,243,182,0.6);
+}
+
+/* ===== Corrección de contraste de texto en las cards ===== */
+
+/* Texto general */
+.card h3,
+.card p,
+.card li {
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+/* Color del título principal del plan */
+.card h3 {
+  color: rgb(0,243,182);
+  font-weight: 700;
+}
+
+/* Al pasar el mouse o expandir */
+.card:hover h3,
+.card.expanded h3 {
+  color: #ffffff;
+}
+
+.card:hover p,
+.card.expanded p,
+.card.expanded li {
+  color: #e0e0e0;
+}
+
+/* Fondo interno más sólido cuando está expandida */
+.card.expanded {
+  background: linear-gradient(
+    160deg,
+    rgba(0,243,182,0.15),
+    rgba(0,0,0,0.6)
+  );
+}
+
+/* Botón visible sobre fondo más oscuro */
+.card.expanded .btn-elegir {
+  background-color: rgb(0,243,182);
+  color: #012641;
+}
+
+.card.expanded .btn-elegir:hover {
+  background-color: rgb(3,83,63);
+  color: #fff;
+}
+
+/* ============================
+💰 SECCIÓN DE COTIZADOR INTERACTIVO
+============================ */
+
+.simulador {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 40px;
+  margin: 60px auto;
+  width: 90%;
+  max-width: 700px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(0, 243, 182, 0.2);
+  border: 1px solid rgba(0, 243, 182, 0.2);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.simulador h2 {
+  color: rgb(0, 243, 182);
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 8px rgba(0, 243, 182, 0.6);
+}
+
+.simulador p {
+  color: #ddd;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.simulador label {
+  display: block;
+  text-align: left;
+  margin: 10px auto;
+  width: fit-content;
+  color: #cfcfcf;
+  font-weight: 500;
+}
+
+.simulador select {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(0, 243, 182, 0.5);
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-top: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.simulador select:focus {
+  border-color: rgb(0, 243, 182);
+  box-shadow: 0 0 10px rgba(0, 243, 182, 0.4);
+}
+
+.extras {
+  margin: 20px 0;
+}
+
+.extras label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.extras input[type="checkbox"] {
+  accent-color: rgb(0, 243, 182);
+  transform: scale(1.2);
+}
+
+.simulador h3 {
+  margin-top: 25px;
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+#total {
+  color: rgb(0, 243, 182);
+  font-size: 1.8rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.animar-total {
+  transform: scale(1.2);
+}
+
+/* ============================
+🧾 BOTÓN DE COTIZACIÓN
+============================ */
+
+.btn-cotizar {
+  display: inline-block;
+  background: rgb(0, 243, 182);
+  color: #012641;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.btn-cotizar:hover {
+  background: rgb(3, 83, 63);
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 243, 182, 0.6);
+}
+
+/* ============================
+📩 MODAL DE COTIZACIÓN
+============================ */
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: rgba(15, 15, 15, 0.95);
+  border-radius: 16px;
+  padding: 40px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  border: 1px solid rgba(0, 243, 182, 0.4);
+  box-shadow: 0 0 25px rgba(0, 243, 182, 0.2);
+  color: #fff;
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-content h2 {
+  color: rgb(0, 243, 182);
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 2rem;
+  color: rgb(0, 243, 182);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close-modal:hover {
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+/* ============================
+🔙 BOTÓN VOLVER
+============================ */
+.btn-volver {
+  display: inline-block;
+  margin: 50px auto;
+  padding: 12px 24px;
+  background: transparent;
+  color: rgb(0, 243, 182);
+  border: 1px solid rgb(0, 243, 182);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+  background: rgb(0, 243, 182);
+  color: #012641;
+  transform: scale(1.05);
+}
+
+/* ============================
+🎞️ ANIMACIONES
+============================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ============================
+🎨 ESTILO PERSONALIZADO DEL SELECT (lista de planes)
+============================ */
+
+.simulador select {
+  background: rgba(20, 20, 20, 0.7);
+  color: #ffffff;
+  border: 1px solid rgba(0, 243, 182, 0.4);
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin-top: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(0, 243, 182, 0.1);
+  backdrop-filter: blur(4px);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath fill='%2300F3B6' d='M0 0l5 7 5-7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 10px;
+}
+
+.simulador select:hover {
+  border-color: rgb(0, 243, 182);
+  box-shadow: 0 0 15px rgba(0, 243, 182, 0.3);
+}
+
+.simulador select:focus {
+  border-color: rgb(0, 243, 182);
+  box-shadow: 0 0 15px rgba(0, 243, 182, 0.5);
+}
+
+/* color de las opciones desplegables */
+.simulador select option {
+  background: #012641;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+}
+
+/* ============================
+💎 EQUIPO 2 - ESTILO AZUL CELESTE
+============================ */
+
+/* Fondo o tono general */
+.bodydos {
+  background: radial-gradient(circle at top, #00121d, #00060b);
+  color: #fff;
+}
+
+/* Card estilo azul */
+.card-azul {
+  background: rgba(0, 40, 80, 0.3);
+  border: 1px solid rgba(0, 180, 255, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.4s ease;
+  color: #e6f4ff;
+  cursor: pointer;
+  max-height: 180px;
+  overflow: hidden;
+}
+
+.card-azul:hover {
+  background: linear-gradient(145deg, rgba(0, 180, 255, 0.25), rgba(0, 40, 80, 0.3));
+  border-color: rgb(0, 180, 255);
+  box-shadow: 0 0 25px rgba(0, 180, 255, 0.3);
+  transform: translateY(-5px);
+}
+
+.card-azul.expanded {
+  background: rgba(0, 60, 120, 0.5);
+  border: 2px solid rgb(0, 180, 255);
+  box-shadow: 0 0 25px rgba(0, 180, 255, 0.5);
+  max-height: 500px;
+}
+
+.card-azul h3 {
+  color: rgb(0, 200, 255);
+}
+
+.card-azul.expanded h3 {
+  color: #fff;
+}
+
+.card-azul .extra-info {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  margin-top: 10px;
+}
+
+.card-azul.expanded .extra-info {
+  opacity: 1;
+}
+
+/* ============================
+🧾 GESTOR DE TAREAS
+============================ */
+.tareas {
+  margin: 80px auto;
+  width: 90%;
+  max-width: 700px;
+  background: rgba(0, 20, 40, 0.6);
+  border: 1px solid rgba(0, 180, 255, 0.3);
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0, 180, 255, 0.15);
+  backdrop-filter: blur(6px);
+}
+
+.tareas h2 {
+  color: rgb(0, 180, 255);
+  margin-bottom: 15px;
+}
+
+.tareas p {
+  color: #d0e8ff;
+  margin-bottom: 20px;
+}
+
+.tareas-input {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tareas-input input {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(0, 180, 255, 0.5);
+  border-radius: 8px;
+  padding: 10px 15px;
+  width: 250px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.tareas-input input:focus {
+  border-color: rgb(0, 180, 255);
+  box-shadow: 0 0 10px rgba(0, 180, 255, 0.4);
+}
+
+.btn-tarea {
+  background: rgb(0, 180, 255);
+  color: #00121d;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-tarea:hover {
+  background: rgb(0, 120, 200);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 180, 255, 0.4);
+}
+
+#listaTareas {
+  list-style: none;
+  padding: 0;
+  margin-top: 25px;
+  text-align: left;
+}
+
+#listaTareas li {
+  background: rgba(0, 40, 80, 0.4);
+  border: 1px solid rgba(0, 180, 255, 0.3);
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+}
+
+#listaTareas li span {
+  cursor: pointer;
+}
+
+#listaTareas li.completada {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 40, 80, 0.2);
+}
+
+#listaTareas button {
+  background: transparent;
+  border: none;
+  color: rgb(0, 200, 255);
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+#listaTareas button:hover {
+  color: rgb(255, 80, 80);
+}
+

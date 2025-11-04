@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipo 1</title>
-    <link rel="stylesheet" href="equipos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipo 1 - Innovadores del Código</title>
+  <link rel="stylesheet" href="equipos.css">
 </head>
-<body class="body_uno">
-    <header class="header scrolled">
+<body class="bodyuno">
+    <header class="header header-euno scrolled">
         <nav class="nav">
-        <a href="index.html"><img src="img/logocoati.png" class="logo" alt="Logo"></a>
+            <a href="index.html"><img src="img/logocoati.png" class="logo" alt="Logo"></a>
             <ul class="nav-links">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="equipo1.html">Equipo 1</a></li>
@@ -19,32 +19,61 @@
     </header>
 
     <main class="page-equipo equipo1">
-        <h1>Equipo 1 - Innovadores del Código</h1>
-        <p>El Equipo 1 se especializa en el desarrollo de aplicaciones web modernas utilizando 
-        <b>React, Node.js y MongoDB</b>. Su enfoque está en construir soluciones escalables y con interfaces atractivas.</p>
-        
-        <h2>Nuestros Planes</h2>
-        
-        <div class="planes">
-            <div class="card">
-                <h3>Plan Básico</h3>
-                <p>Landing page con diseño responsive y optimización básica para SEO.</p>
+        <section class="section-header">
+            <h1>Equipo 1 - Innovadores del Código</h1>
+            <p>El Equipo 1 se especializa en el desarrollo de aplicaciones web modernas utilizando 
+            <b>React, Node.js y MongoDB</b>. Su enfoque está en construir soluciones escalables y con interfaces atractivas.</p>
+        </section>
+
+        <section class="section-cards">
+            <h2>Nuestros Planes</h2>
+            <div class="planes">
+                <div class="card" data-plan="basico" data-price="200">
+                    <h3>Plan Básico</h3>
+                    <p>Landing page con diseño responsive y optimización básica para SEO.</p>
+                    <div class="extra-info">
+                        <ul>
+                            <li>1 página web</li>
+                            <li>Diseño adaptable</li>
+                            <li>Entrega en 5 días</li>
+                        </ul>
+                        <button class="btn-elegir">Elegir Plan</button>
+                    </div>
+                </div>
+
+                <div class="card" data-plan="profesional" data-price="400">
+                    <h3>Plan Profesional</h3>
+                    <p>Sitio web dinámico con backend Node.js y base de datos MongoDB.</p>
+                    <div class="extra-info">
+                        <ul>
+                            <li>Hasta 5 secciones</li>
+                            <li>Integración con base de datos</li>
+                            <li>Soporte técnico incluido</li>
+                        </ul>
+                        <button class="btn-elegir">Elegir Plan</button>
+                    </div>
+                </div>
+
+                <div class="card" data-plan="premium" data-price="700">
+                    <h3>Plan Premium</h3>
+                    <p>Aplicación web completa con panel de administración y hosting incluido.</p>
+                    <div class="extra-info">
+                        <ul>
+                            <li>Panel de control personalizado</li>
+                            <li>Dominio gratuito</li>
+                            <li>Mantenimiento por 6 meses</li>
+                        </ul>
+                        <button class="btn-elegir">Elegir Plan</button>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <h3>Plan Profesional</h3>
-                <p>Sitio web dinámico con backend Node.js y base de datos MongoDB.</p>
-            </div>
-            <div class="card">
-                <h3>Plan Premium</h3>
-                <p>Aplicación web completa con panel de administración y hosting incluido.</p>
-            </div>
-        </div>
-        
-        <!-- 🧮 Simulador Interactivo de Cotización -->
+        </section>
+
+        <!-- Simulador Interactivo -->
         <section class="simulador">
-            <h2>💰 Cotizá tu proyecto</h2>
+            <h2>Cotizá tu proyecto</h2>
             <p>Seleccioná un plan y servicios adicionales para ver el presupuesto estimado:</p>
-            
+
             <label for="plan">Elegí tu plan:</label>
             <select id="plan">
                 <option value="0">-- Seleccioná --</option>
@@ -60,28 +89,23 @@
             </div>
         
             <h3>Total estimado: <span id="total">$0</span></h3>
-        </section>
 
+            <button id="btnCotizar" class="btn-cotizar">Solicitar Cotización</button>
+        </section>
+    
         <a href="index.html" class="btn-volver">Volver al Inicio</a>
     </main>
 
-    <!-- script -->
-    <script>
-        const plan = document.getElementById("plan");
-        const extras = document.querySelectorAll(".extras input");
-        const total = document.getElementById("total");
+    <!-- Modal -->
+    <div id="modalCotizacion" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Tu cotización fue generada 🎉</h2>
+            <p>Nos pondremos en contacto contigo para personalizar tu proyecto.</p>
+            <button id="cerrarModal" class="btn-elegir">Cerrar</button>
+        </div>
+    </div>
 
-        function calcularTotal() {
-            let suma = parseInt(plan.value) || 0;
-                extras.forEach(chk => {
-                if (chk.checked) suma += parseInt(chk.value);
-            });
-            total.textContent = "$" + suma;
-        }
-
-        plan.addEventListener("change", calcularTotal);
-        extras.forEach(chk => chk.addEventListener("change", calcularTotal));
-    </script>
-    
+    <script src="script.js"></script>
 </body>
 </html>
