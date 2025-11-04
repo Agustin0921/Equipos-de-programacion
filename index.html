@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>HEADER Y NAV</title>
 </head>
 <body>
@@ -19,6 +20,7 @@
                 <li><a href="#about">Equipos</a></li>
                 <li><a href="#services">Servicios</a></li>
                 <li><a href="#contact">Contacto</a></li>
+                <li><a href="#loginSection">Iniciar Sesión</a></li>
             </ul>
         </nav>
     </header>
@@ -68,46 +70,333 @@
             </div>
         </section>
 
+        <!-- LOGIN / DASHBOARD INTERNO -->
+        <section class="login-section" id="loginSection">
+            <h2 class="login-title">Acceso al Panel Interno</h2>
+            <form id="loginForm" class="login-form">
+                <div class="form-group login">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" placeholder="Nombre de usuario" required>
+                </div>
+                <div class="form-group login">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="btn-contact">Ingresar</button>
+                <p id="loginError" class="login-error"></p>
+            </form>
+            <p class="register-text">¿No tenés cuenta? <a href="#" id="showRegister">Registrate</a></p>
+        </section>
+
+        <!-- FORMULARIO DE REGISTRO -->
+        <section class="login-section register-section hidden" id="registerSection">
+            <h2 class="login-title">Registrar nuevo usuario</h2>
+            <form id="registerForm" class="login-form">
+                <div class="form-group">
+                    <label for="newUsername">Usuario</label>
+                    <input type="text" id="newUsername" placeholder="Nombre de usuario" required>
+                </div>
+                <div class="form-group">
+                    <label for="newEmail">Correo electrónico</label>
+                    <input type="email" id="newEmail" placeholder="ejemplo@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Contraseña</label>
+                    <input type="password" id="newPassword" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="btn-contact">Registrar</button>
+                <p id="registerMessage" class="login-error"></p>
+            </form>
+            <p class="register-text">¿Ya tenés cuenta? <a href="#" id="backToLogin">Iniciar sesión</a></p>
+        </section>
+
+
+        <!-- OLVIDÉ MI CONTRASEÑA -->
+        <section class="login-section hidden" id="forgotSection">
+            <h2 class="login-title">Recuperar Contraseña</h2>
+            <form id="forgotForm" class="login-form">
+                <div class="form-group">
+                    <label for="forgotEmail">Correo electrónico</label>
+                    <input type="email" id="forgotEmail" placeholder="Ingresa tu correo" required>
+                </div>
+                <button type="submit" class="btn-contact">Enviar código</button>
+                <p id="forgotMessage" class="login-error"></p>
+            </form>
+        </section>
+
+        <!-- CAMBIAR CONTRASEÑA -->
+        <section class="login-section hidden" id="resetSection">
+            <h2 class="login-title">Restablecer Contraseña</h2>
+            <form id="resetForm" class="login-form">
+                <div class="form-group">
+                    <label for="resetCode">Código recibido</label>
+                    <input type="text" id="resetCode" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Nueva contraseña</label>
+                    <input type="password" id="newPassword" required>
+                </div>
+                <button type="submit" class="btn-contact">Actualizar contraseña</button>
+                <p id="resetMessage" class="login-error"></p>
+            </form>
+        </section>
+
+
+        <section class="dashboard hidden" id="dashboard">
+            <!-- 🔹 Barra de navegación -->
+            <nav class="dashboard-nav">
+                <ul>
+                    <li><button class="dash-tab active" data-tab="profileSection">Mi Perfil</button></li>
+                    <li><button class="dash-tab" data-tab="projectSection">Mis Proyectos</button></li>
+                    <li><button class="dash-tab" data-tab="statsSection">Estadísticas</button></li>
+                    <li><button class="dash-tab" data-tab="chatSection">Chat</button></li>
+                </ul>
+            </nav>
+        
+            <h2 class="dashboard-title">Panel de Control</h2>
+            <p class="dashboard-text">Bienvenido, <span id="userName"></span>.</p>
+        
+            <div id="dashboardContent">
+                <!-- 🔹 Cada sección del panel -->
+                <div id="profileSection" class="dash-content">
+                    <div class="profile-container">
+                        <!-- 🔹 Barra lateral -->
+                        <nav class="profile-sidebar">
+                            <ul>
+                                <li><button class="profile-tab active" data-tab="info">👤 Información</button></li>
+                                <li><button class="profile-tab" data-tab="security">🔒 Seguridad</button></li>
+                                <li><button class="profile-tab" data-tab="settings">⚙️ Configuración</button></li>
+                                <li><button class="profile-tab" data-tab="preferences">🎨 Preferencias</button></li>
+                                <li><button class="profile-tab" data-tab="history">🧾 Historial</button></li>
+                            </ul>
+                        </nav>
+                    
+                        <!-- 🔹 Contenido dinámico -->
+                        <div class="profile-content">
+                            <!-- Información -->
+                            <div id="tab-info" class="profile-tab-content">
+                                <h3>👤 Información del usuario</h3>
+                                <form id="profileForm" enctype="multipart/form-data">
+                                    <div class="profile-photo">
+                                        <div class="photo-wrapper">
+                                            <img id="previewImage" src="img/default-user.png" alt="Vista previa">
+                                            <label for="profileImage" class="photo-label">📷 Cambiar foto</label>
+                                            <input type="file" id="profileImage" accept="image/*" hidden>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label for="profileName">Nombre</label>
+                                        <input type="text" id="profileName" placeholder="Nuevo nombre">
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label for="profileEmail">Correo electrónico</label>
+                                        <input type="email" id="profileEmail" placeholder="Nuevo correo">
+                                    </div>
+                                
+                                    <button type="submit" class="btn-save">💾 Actualizar</button>
+                                </form>
+                                <p id="profileMessage"></p>
+                            </div>
+
+                        
+                            <!-- Seguridad -->
+                            <div id="tab-security" class="profile-tab-content hidden">
+                                <h3>🔒 Seguridad</h3>
+                                <form id="changePassForm">
+                                    <input type="password" id="currentPass" placeholder="Contraseña actual" required>
+                                    <input type="password" id="newPass" placeholder="Nueva contraseña" required>
+                                    <button type="submit">Actualizar contraseña</button>
+                                </form>
+                                <p id="passMessage"></p>
+                            
+                                <h4>📜 Actividad reciente</h4>
+                                <ul id="recentActivity" class="activity-list">
+                                    <li class="activity-item">Inicio de sesión exitoso - Hoy</li>
+                                    <li class="activity-item">Proyecto editado - Ayer</li>
+                                    <li class="activity-item">Contraseña actualizada - Hace 3 días</li>
+                                </ul>
+                            </div>
+                        
+                            <!-- Configuración -->
+                            <div id="tab-settings" class="profile-tab-content hidden">
+                                <h3>⚙️ Configuración de cuenta</h3>
+                                <div class="settings-options">
+                                    <label><input type="checkbox" id="notifEmail" checked> Notificaciones por correo</label>
+                                    <label><input type="checkbox" id="notifPush"> Notificaciones push</label>
+                                    <label>
+                                        Idioma:
+                                        <select id="languageSelect">
+                                            <option value="es">Español</option>
+                                            <option value="en">Inglés</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        Visibilidad del perfil:
+                                        <select id="visibilitySelect">
+                                            <option value="public">Público</option>
+                                            <option value="private">Privado</option>
+                                        </select>
+                                    </label>
+                                    <button class="btn-contact" id="saveSettings">Guardar cambios</button>
+                                </div>
+                            </div>
+                        
+                            <!-- Preferencias -->
+                            <div id="tab-preferences" class="profile-tab-content hidden">
+                                <h3>🎨 Personalización</h3>
+                                <p>Elegí tu estilo de dashboard:</p>
+                                <div class="theme-buttons">
+                                    <button id="themeLight" class="btn-contact">Modo Claro</button>
+                                    <button id="themeDark" class="btn-contact">Modo Oscuro</button>
+                                    <button id="themeGreen" class="btn-contact">Verde (predeterminado)</button>
+                                </div>
+                            </div>
+                        
+                            <!-- Historial -->
+                            <div id="tab-history" class="profile-tab-content hidden">
+                                <h3>🧾 Historial de actividad</h3>
+                                <p>Últimas acciones dentro del sistema:</p>
+                                <ul id="activityList" class="activity-list">
+                                    <li class="activity-item">Sin actividad reciente</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            
+                <div id="projectSection" class="dash-content hidden">
+                    <h3>Mis Proyectos</h3>
+                    <form id="projectForm" class="project-form">
+                        <input type="text" id="projTitle" placeholder="Título del proyecto" required>
+                        <input type="text" id="projDesc" placeholder="Descripción" required>
+                        <select id="projStatus">
+                            <option>Pendiente</option>
+                            <option>En progreso</option>
+                            <option>Completado</option>
+                        </select>
+                        <input type="number" id="projProgress" min="0" max="100" value="0">
+                        <button type="submit">Agregar proyecto</button>
+                    </form>
+                    <div id="projectsList" class="projects-list"></div>
+                </div>
+            
+                <div id="statsSection" class="dash-content hidden">
+                    <h3>📊 Estadísticas del usuario</h3>
+
+                    <!-- 🔹 Resumen superior -->
+                    <div class="stats-summary">
+                        <div class="stat-card">
+                            <h4>Proyectos totales</h4>
+                            <p id="statTotalProjects">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Proyectos completados</h4>
+                            <p id="statCompleted">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Mensajes enviados</h4>
+                            <p id="statMessages">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Último inicio de sesión</h4>
+                            <p id="statLastLogin">--/--/----</p>
+                        </div>
+                    </div>
+                
+                    <!-- 🔹 Filtros -->
+                    <div class="stats-filters">
+                        <label for="statsPeriod">Periodo:</label>
+                        <select id="statsPeriod">
+                            <option value="week">Última semana</option>
+                            <option value="month">Último mes</option>
+                            <option value="year">Último año</option>
+                        </select>
+                        <button id="updateStats" class="btn-contact">Actualizar</button>
+                    </div>
+                
+                    <!-- 🔹 Gráfico principal -->
+                    <div class="stats-chart">
+                        <canvas id="statsChart" width="400" height="200"></canvas>
+                    </div>
+                
+                    <!-- 🔹 Gráfico secundario -->
+                    <div class="stats-chart">
+                        <canvas id="progressChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+
+            
+                <div id="chatSection" class="dash-content hidden">
+                    <h3>Chat de Equipos</h3>
+                    <div id="chatBox" class="chat-box"></div>
+                    <form id="chatForm" class="chat-form">
+                        <input type="text" id="chatInput" placeholder="Escribí un mensaje..." required>
+                        <button id="chatSend" type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        
+            <button id="logoutBtn" class="btn-contact">Cerrar Sesión</button>
+        </section> <!-- 🔹 cierre correcto -->
+
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        
+
+
+
+
+
         <!-- SECTION SERVICES -->
         <section class="services" id="services">
             <div class="content-services">
-                <h2 class="title-services">SERVICES</h2>
-                <p class="text-services">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio, magnam!</p>
-
+                <h2 class="title-services">SERVICIOS</h2>
+                <p class="text-services">Ofrecemos soluciones digitales integrales para potenciar tu presencia en línea.</p>
+                
                 <div class="service-items">
-                    <div class="service-card fade-up">
-                        <h3 class="item-title">Diseño Web</h3>
-                        <p>Creaciones de páginas modernas, rápidas y responsivas</p>
-                        <img src="img/desarrolloweb.jpg" alt="Imagen de diseño web">
+                    <!-- 1️⃣ Diseño Web -->
+                    <div class="service-card fade-up" data-service="web">
+                        <img src="img/desarrolloweb.jpg" alt="Diseño Web">
+                        <div class="text-content">
+                            <h3 class="item-title">Diseño Web</h3>
+                            <p>Creación de páginas modernas, rápidas y totalmente responsivas, con enfoque en experiencia de usuario y diseño atractivo.</p>
+                        </div>
                     </div>
-                    <div class="service-card fade-up">
-                        <h3 class="item-title">Desarrolo de Backend</h3>
-                        <p>Soluciones escalables con Node.js y bases de datos.</p>
-                        <img src="img/backend.png" alt="Imagen de diseño web">
+                
+                    <!-- 2️⃣ Backend -->
+                    <div class="service-card fade-up" data-service="backend">
+                        <img src="img/backend.png" alt="Desarrollo Backend">
+                        <div class="text-content">
+                            <h3 class="item-title">Desarrollo Backend</h3>
+                            <p>Soluciones escalables y seguras con Node.js, Python y bases de datos como MySQL o MongoDB.</p>
+                        </div>
                     </div>
-                    <div class="service-card fade-up">
-                        <h3 class="item-title">Soporte Técnico</h3>
-                        <p>Atención personalizada para resolver problemas en el desarrollo web.</p>
-                        <img src="img/soportetecnico.jpg" alt="Imagen de diseño web">
+                
+                    <!-- 3️⃣ Soporte Técnico -->
+                    <div class="service-card fade-up" data-service="soporte">
+                        <img src="img/soportetecnico.jpg" alt="Soporte Técnico">
+                        <div class="text-content">
+                            <h3 class="item-title">Soporte Técnico</h3>
+                            <p>Asistencia personalizada para resolver problemas técnicos, mantenimiento de servidores y soporte web continuo.</p>
+                        </div>
                     </div>
-                    <div class="service-card fade-up">
-                        <h3 class="item-title">Diseño Web</h3>
-                        <p>Creaciones de páginas modernas, rápidas y responsivas</p>
-                        <img src="img/desarrolloweb.jpg" alt="Imagen de diseño web">
-                    </div>
-                    <div class="service-card fade-up">
-                        <h3 class="item-title">Desarrolo de Backend</h3>
-                        <p>Soluciones escalables con Node.js y bases de datos.</p>
-                        <img src="img/backend.png" alt="Imagen de diseño web">
-                    </div>
-                    <div class="service-card fade-up">
-                        <h3 class="item-title">Soporte Técnico</h3>
-                        <p>Atención personalizada para resolver problemas en el desarrollo web.</p>
-                        <img src="img/soportetecnico.jpg" alt="Imagen de diseño web">
+                
+                    <!-- 4️⃣ Marketing Digital -->
+                    <div class="service-card fade-up" data-service="marketing">
+                        <img src="img/digital-marketing.jpg" alt="Marketing Digital">
+                        <div class="text-content">
+                            <h3 class="item-title">Marketing Digital</h3>
+                            <p>Campañas publicitarias, posicionamiento SEO y estrategias personalizadas para aumentar tu visibilidad online.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
 
         <!-- CONTACT SECTION- -->
         <section class="contact" id="contact">
